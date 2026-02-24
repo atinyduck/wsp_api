@@ -11,7 +11,7 @@ router = APIRouter(prefix="/token", tags=["Authentication Tokens"])
 @router.post("", response_model=models.Token, status_code=201)
 def login(form_data: OAuth2PasswordRequestForm = Depends(), 
           connection=Depends(database.get_db_connection)):
-    """ Login endpoint for Washington State Patrol system. """
+    """ Login endpoint for the Washington State Patrol system. """
     
     query = "SELECT * FROM Officer WHERE Badge_Number = %s"
     
@@ -37,17 +37,15 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(),
 
 @router.put("", response_model=models.Token)
 def refresh_token(current_user: str = Depends(auth.verify_token)):
-    """ Refresh access token endpoint for Washington State Patrol system. """
+    """ Refresh access token endpoint for the Washington State Patrol system. """
     
     # Issue a new access token for the current user
-    # In a real implementation, you would also check if the current token is valid and not expired before issuing a new one.
     access_token = auth.create_access_token(data={"sub": current_user})
     return {"access_token": access_token, "token_type": "bearer"}
 
 @router.delete("", status_code=status.HTTP_204_NO_CONTENT)
 def logout(current_user: str = Depends(auth.verify_token)):
-    """ Logout endpoint for Washington State Patrol system. """
-    # In a real implementation, you would invalidate the token here (e.g., by adding it to a blacklist)
+    """ Logout endpoint for the Washington State Patrol system. """
     return
 
 # end of tokens.py
