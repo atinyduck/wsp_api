@@ -1,0 +1,11 @@
+# Python environment
+.venv/
+__pycache__/
+*.pyc
+
+# Local Database Data (Don't sync the actual DB files, just the scripts)
+db_data/
+
+# OS specific
+.DS_Store
+Thumbs.db
