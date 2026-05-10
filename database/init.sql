@@ -62,7 +62,20 @@ CREATE TABLE Notice_Violation (
     FOREIGN KEY (Violation_Code) REFERENCES Violation(Violation_Code)
 );
 
--- Fill tables with eaxmple data
+-- Fill tables with example data
+
+INSERT INTO Violation (Violation_Code, Violation_Description) VALUES
+('SPEED0110', 'Speeding 1-10 mph over limit'),
+('SPEED1120', 'Speeding 11-20 mph over limit'),
+('SPEED2130', 'Speeding 21-30 mph over limit'),
+('SPEED31', 'Speeding 31+ mph over limit'),
+('REDLT', 'Running Red Light'),
+('PARK', 'Illegal Parking'),
+('SEATB', 'No Seatbelt'),
+('RECK', 'Reckless Driving'),
+('LANEC', 'Improper Lane Change'),
+('REG', 'Expired Registration'),
+('OTHER', 'Other Violation');
 
 INSERT INTO Officer (Badge_Number, Secret_Hash, First_Name, Last_Name) VALUES
 ('B99001', '$2b$12$NDX7j1uCyk1haIi4qI3SpOW/7QjPOBPn5aDx.QfXiza74rD9.DB7.', 'Jake', 'Peralta'), -- Password is "johndoe"
