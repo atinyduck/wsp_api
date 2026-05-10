@@ -10,7 +10,7 @@ Last Modified: 16-02-2026
 from fastapi import FastAPI
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import drivers, notices, tokens, vehicles
+from routers import drivers, notices, tokens, vehicles, citations
 
 app = FastAPI(title="New York Police Department API")
 
@@ -31,6 +31,7 @@ app.add_middleware(
 
 app.include_router(drivers.router)
 app.include_router(notices.router)
+app.include_router(citations.router)
 app.include_router(tokens.router)
 app.include_router(vehicles.router)
 

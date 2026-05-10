@@ -51,14 +51,15 @@ def execute_insert(connection, query, params):
 
 # Database connection dependency
 def get_db_connection():
-    """ Establish a connection to the Washing State Patrol MySQL databse """
+    """ Establish a connection to the NYPD Citation System MySQL databse """
     connection = None
     
     # Attempt to connect to the database
     try:
         connection = mysql.connector.connect(
-            host='localhost',
-            database='WSP_System',
+            host='127.0.0.1',
+            port=3307,
+            database='NYPD_Citation_System',
             user='root',
             password='awsp3142'
         )
