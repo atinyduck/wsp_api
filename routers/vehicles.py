@@ -1,5 +1,5 @@
 # vehicles.py
-# FastAPI application for Washington State Patrol system - Vehicle endpoints.
+# FastAPI application for New York Police Department Citation system - Vehicle endpoints.
 # =========================================================
 
 from fastapi import APIRouter, Depends, HTTPException

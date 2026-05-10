@@ -1,7 +1,7 @@
 -- init.sql
 
-CREATE DATABASE IF NOT EXISTS WSP_System;
-USE WSP_System;
+CREATE DATABASE IF NOT EXISTS NYPD_Citation_System;
+USE NYPD_Citation_System;
 
 -- 1. Create Driver Table
 CREATE TABLE Driver (

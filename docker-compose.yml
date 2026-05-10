@@ -4,7 +4,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: awsp3142
-      MYSQL_DATABASE: WSP_System
+      MYSQL_DATABASE: NYPD_Citation_System
     ports:
       - "3306:3306"
     volumes:

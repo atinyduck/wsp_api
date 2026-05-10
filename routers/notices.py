@@ -1,5 +1,5 @@
 # notices.py
-# FastAPI application for Washington State Patrol system - Notice endpoints.
+# FastAPI application for New York Police Department Citation system - Notice endpoints.
 # =========================================================
 
 from fastapi import APIRouter, Depends, HTTPException

@@ -1,5 +1,5 @@
 # drivers.py
-# FastAPI application for Washington State Patrol system - Driver endpoints.
+# FastAPI application for the New York Police Department Citation system - Driver endpoints.
 # =========================================================
 
 

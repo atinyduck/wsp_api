@@ -1,7 +1,6 @@
 # auth.py
-# Authentication and authorization utilities for the Washington State Patrol system.
+# Authentication and authorization utilities for the NYPD Citation system.
 # =========================================================
-
 
 from jose import JWTError, jwt
 from passlib.context import CryptContext

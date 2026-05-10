@@ -1,9 +1,9 @@
 # main.py
-# FastAPI application for Washington State Patrol system.
+# FastAPI application for New York Police Department Citation system.
 """
-Title: Washington State Patrol API
+Title: New York Police Department API
 Version: 0.0.1
-Description: API for managing drivers, correction notices, violations, and notice violations in the Washington State Patrol system.
+Description: API for managing drivers, correction notices, violations, and notice violations in the New York Police Department.
 Author: Jake Morgan
 Last Modified: 16-02-2026
 """
@@ -11,7 +11,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import drivers, notices, tokens, vehicles
 
-app = FastAPI(title="Washington Sate Patrol API")
+app = FastAPI(title="NYPD Citation System API", version="0.0.1", description="API for managing drivers, correction notices, violations, and notice violations in the New York Police Department.")
 
 # Add CORS middleware
 app.add_middleware(

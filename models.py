@@ -8,7 +8,7 @@ from typing import List
 # --- Driver Models --- 
 
 class DriverBase(BaseModel):
-    """ Base model for a driver in Washington State Patrol system. """
+    """ Base model for a driver in NYPD Citation system. """
     First_Name: str = Field(..., example="John")
     Last_Name: str = Field(..., example="Doe")
     Address: str = Field(..., example="123 Main St, Springfield, WA")
@@ -32,7 +32,7 @@ class DriverResponse(DriverBase):
 # --- Officer Models --- 
 
 class OfficerBase(BaseModel):
-    """ Base model for an officer in Washington State Patrol system. """
+    """ Base model for an officer in NYPD Citation system. """
     Badge_Number: str = Field(..., min_length=5, example="12345")
     First_Name: str = Field(..., example="John")
     Last_Name: str = Field(..., example="Doe")
@@ -53,7 +53,7 @@ class OfficerResponse(OfficerBase):
 # --- Vehicle Models --- 
 
 class VehicleBase(BaseModel):
-    """ Base model for a vehicle in Washing State Patrol system. """
+    """ Base model for a vehicle in NYPD Citation system. """
     VIN: str = Field(..., min_length=17, max_length=17, example="1HGCM82633A123456")
     Make: str = Field(..., example="Honda")
     Model: str = Field(..., example="Accord")
@@ -75,7 +75,7 @@ class VehicleResponse(VehicleBase):
 # --- Correction Notice Models --- 
 
 class CorrectionNoticeBase(BaseModel):
-    """ Base model for a correction notice in Washing State Patrol system. """
+    """ Base model for a correction notice in NYPD Citation system. """
     Violation_Date: date = Field(..., example="2024-01-01")
     Violation_Time: str = Field(..., example="14:30:00")
     Location: str = Field(..., example="I-5 Northbound")
@@ -101,7 +101,7 @@ class CorrectionNoticeResponse(CorrectionNoticeBase):
 # --- Violation Models --- 
 
 class ViolationBase(BaseModel):
-    """ Base model for a violation in Washing State Patrol system. """
+    """ Base model for a violation in NYPD Citation system. """
     Violation_Code: str = Field(..., example="SPD0110")
     Violation_Description: str = Field(..., example="Vehicle Speeding by 1-10 mph over limit.")
 
@@ -119,7 +119,7 @@ class ViolationResponse(ViolationBase):
 # --- NoticeViolation Models --- 
 
 class NoticeViolationBase(BaseModel):
-    """ Base model for a notice violation in Washing State Patrol system. """
+    """ Base model for a notice violation in NYPD Citation system. """
     Violation_Code: str = Field(..., example="SPD0110")
     
 class NoticeViolationCreate(NoticeViolationBase):

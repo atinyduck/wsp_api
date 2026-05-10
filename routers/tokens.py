@@ -1,5 +1,5 @@
 # tokens.py
-# FastAPI application for Washington State Patrol system - Token endpoints.
+# FastAPI application for New York Police Department Citatio  system - Token endpoints.
 # =========================================================
 
 from fastapi import APIRouter, Depends, HTTPException, status
@@ -11,7 +11,7 @@ router = APIRouter(prefix="/token", tags=["Authentication Tokens"])
 @router.post("", response_model=models.Token, status_code=201)
 def login(form_data: OAuth2PasswordRequestForm = Depends(), 
           connection=Depends(database.get_db_connection)):
-    """ Login endpoint for the Washington State Patrol system. """
+    """ Login endpoint for the NYPD Citation system. """
     
     query = "SELECT * FROM Officer WHERE Badge_Number = %s"
     
@@ -37,7 +37,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(),
 
 @router.put("", response_model=models.Token)
 def refresh_token(current_user: str = Depends(auth.verify_token)):
-    """ Refresh access token endpoint for the Washington State Patrol system. """
+    """ Refresh access token endpoint for the NYPD Citation system. """
     
     # Issue a new access token for the current user
     access_token = auth.create_access_token(data={"sub": current_user})
@@ -45,7 +45,7 @@ def refresh_token(current_user: str = Depends(auth.verify_token)):
 
 @router.delete("", status_code=status.HTTP_204_NO_CONTENT)
 def logout(current_user: str = Depends(auth.verify_token)):
-    """ Logout endpoint for the Washington State Patrol system. """
+    """ Logout endpoint for the NYPD Citation system. """
     return
 
 # end of tokens.py
