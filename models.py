@@ -67,6 +67,8 @@ class VehicleCreate(VehicleBase):
 
 class VehicleResponse(VehicleBase):
     """ Model for returning vehicle information. """
+    VIN: str = Field(..., example="1HGCM82633A123456")
+    
     class Config:
         from_attributes = True
 

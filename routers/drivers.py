@@ -10,6 +10,45 @@ import auth
 
 router = APIRouter(prefix="/drivers", tags=["Drivers"])
 
+@router.post("/register", response_model=models.DriverResponse, status_code=201)
+def register_driver(
+    driver: models.DriverCreate, 
+    connection=Depends(database.get_db_connection)):
+    """ Register a new driver without authentication. """
+    
+    try:
+        # Check if driver with this license number already exists
+        existing = database.execute_query(
+            connection, 
+            "SELECT * FROM Driver WHERE License_Number = %s", 
+            (driver.License_Number,), 
+            fetch="one"
+        )
+        if existing:
+            raise HTTPException(
+                status_code=400, 
+                detail="A driver with this license number already exists"
+            )
+    except HTTPException as e:
+        if e.status_code == 400:
+            raise e
+        # If 404 (not found), that's good - continue
+        pass
+    
+    try:
+        # Create the new driver
+        driver_id = database.execute_insert(
+            connection,
+            "INSERT INTO Driver (First_Name, Last_Name, Address, Birth_Date, License_Number, License_State) VALUES (%s, %s, %s, %s, %s, %s)",
+            (driver.First_Name, driver.Last_Name, driver.Address, driver.Birth_Date, driver.License_Number, driver.License_State)
+        )
+        
+        # Retrieve and return the newly created driver
+        return database.execute_query(connection, "SELECT * FROM Driver WHERE Driver_ID = %s", (driver_id,), fetch="one")
+    
+    except Exception as err:
+        raise HTTPException(status_code=500, detail=f"Database error: {err}")
+
 @router.get("/", response_model=List[models.DriverResponse])
 def read_all_drivers(
     connection=Depends(database.get_db_connection), 
@@ -30,6 +69,17 @@ def read_driver(
     query = "SELECT * FROM Driver WHERE Driver_ID = %s"
     
     return database.execute_query(connection, query, (driver_id,), fetch="one")
+
+@router.get("/license/{license_number}", response_model=models.DriverResponse)
+def read_driver_by_license(
+    license_number: str, 
+    connection=Depends(database.get_db_connection),
+    current_user: str=Depends(auth.verify_token)):
+    """ Retrieve a driver by their license number. """
+    
+    query = "SELECT * FROM Driver WHERE License_Number = %s"
+    
+    return database.execute_query(connection, query, (license_number,), fetch="one")
 
 @router.post("/", response_model=models.DriverResponse, status_code=201)
 def create_driver(
