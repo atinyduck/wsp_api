@@ -14,7 +14,7 @@ from routers import drivers, notices, tokens, vehicles, citations
 
 app = FastAPI(title="New York Police Department API")
 
-# Add CORS middleware BEFORE including routers
+# CORS configuration to allow requests from local development environments
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
